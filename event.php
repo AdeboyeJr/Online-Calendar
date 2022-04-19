@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/devtools.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/calendar.css">
     <title>Show/Add Events</title>
 </head>
-<body>
-    <h1>Show/Add Events</h1>
+<body onunload="window.opener.location.reload();">
+    <h1 id="banner">Show/Add Events</h1>
     <?php
     $mysqli = mysqli_connect("localhost", "u667897109_Ade", "T#st1125", "u667897109_Data");
 
@@ -43,7 +46,7 @@
         $getEvent_res = mysqli_query($mysqli, $getEvent_sql) or die(mysqli_error($mysqli));
 
         if (mysqli_num_rows($getEvent_res) > 0) {
-            $event_txt = "<ul>";
+            $event_txt = "<ul id=\"event\">";
             while ($ev = mysqli_fetch_array($getEvent_res)) {
                 $event_title = stripslashes($ev['event_title']);
                 $event_shortdesc = stripslashes($ev['event_shortdesc']);
@@ -80,7 +83,7 @@
     <input type="text" id="event_short_desc" name="event_shortdesc" size="25" maxlength="255"></p>
     <fieldset>
     <legend>Event Time (hh:mm):</legend>
-    <select name="event_time_hh">
+    <select class="event-time" name="event_time_hh">
     END_OF_TEXT;
 
     for ($x=1; $x <= 24; $x++) {
@@ -89,7 +92,7 @@
 
     echo <<<END_OF_TEXT
     </select>:
-    <select name="event_time_mm">
+    <select class="event-time" name="event_time_mm">
     <option value="00">00</option>
     <option value="15">15</option>
     <option value="30">30</option>
@@ -100,7 +103,7 @@
     <input type="hidden" name="d" value="$safe_d">
     <input type="hidden" name="y" value="$safe_y">
 
-    <button type="submit" name="submit" value="submit">Add Event</button>
+    <button id="add-event" type="submit" name="submit" value="submit">Add Event</button>
     </form>
     END_OF_TEXT;
     ?>

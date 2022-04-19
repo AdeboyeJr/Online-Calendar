@@ -17,36 +17,16 @@ $firstDayArray = getdate($start);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,">
     <link rel="icon" href="images/devtools.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/index.css">
-    <title><?php echo "Calendar:" . $firstDayArray['month'] . " " . $firstDayArray['year']; ?></title>
-    <style type="text/css">
-        table {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        th {
-            border: 1px solid black;
-            padding: 6px;
-            font-weight: bold;
-            background-color: #ccc;
-        }
-
-        td {
-            border: 1px solid black;
-            padding: 6px;
-            vertical-align: top;
-            width: 100px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/calendar.css">
+    <title><?php echo "Calendar:" . $firstDayArray['month'] . " " . $firstDayArray['year']; ?></title>  
 </head>
 <body>
-    <h1>Select a Month/Year Combination</h1>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <select name="month">
+    <h1 id="banner">Select a Month/Year Combination</h1>
+    <form class="center" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <select name="month" id="month">
         <?php
         $months = Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
         for ($x=1; $x <= count($months); $x++) {
@@ -58,9 +38,9 @@ $firstDayArray = getdate($start);
         }
         ?>
     </select>
-    <select name="year" id="">
+    <select name="year" id="year">
     <?php
-    for ($x=1990; $x<=2020; $x++) {
+    for ($x=1990; $x<=2050; $x++) {
         echo "<option";
         if ($x == $year) {
             echo " selected";
@@ -69,15 +49,18 @@ $firstDayArray = getdate($start);
     }
     ?>
     </select>
-    <button type="submit" name="submit" value="submit">Go!</button>
+    <button id="goto" type="submit" name="submit" value="submit">Go!</button>
     </form>
     <br>
     <?php
     $days = Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
-    echo "<table><tr>\n";
+    echo "<table id=\"calendar\"><thead><tr>\n";
     foreach($days as $day) {
         echo "<th>" . $day . "</th>\n";
     }
+
+    echo "</tr></thead><tbody>";
+
     for ($count=0; $count < (6*7); $count++) {
         $dayArray = getdate($start);
         if (($count % 7) == 0) {
@@ -111,7 +94,7 @@ $firstDayArray = getdate($start);
             $start += ADAY;
         }
     }
-    echo "</tr></table>";
+    echo "</tr></tbody></table>";
 
     // close connection to MySQL
     mysqli_close($mysqli);
@@ -122,5 +105,10 @@ $firstDayArray = getdate($start);
             event.popupWin.opener = self;
         }
     </script>
+
+    <div class="center">
+        <a href="/"><button id="home">Home</button></a>
+    </div>
+   
 </body>
 </html>

@@ -1,0 +1,268 @@
+html {
+    background: rgba(65, 188, 147, 0.878);
+    height: 100%;
+}
+
+body {
+    /* width: 100%; 
+    min-width: 100%; */
+    min-height: 100%;
+    background: rgb(255, 255, 255);
+
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+    padding: 4em;
+    
+}
+
+#myTable, #calendar {
+    margin: 0 auto;
+    width: 80%;
+} 
+
+#banner {
+    text-align: center;
+    font-size: 3em;
+    
+    color: white;
+    background-color: rgb(127, 255, 212);
+    padding: 20px;
+    margin-bottom: 1em;
+}
+
+h2 {
+    margin-top: -2em;
+    margin-bottom: 1em;
+    padding: 1em;
+    color: rgb(123, 163, 150);
+    background: rgba(127, 255, 212, 0.25);
+    text-align: center;
+    font-size: 2em;
+}
+
+a {
+    color: rgb(123, 163, 150);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgba(4, 107, 73, 1);
+    text-decoration: none;
+}
+
+a:active {
+    color: rgb(127, 212, 184);
+    text-decoration: none;
+}
+
+#content a{
+   text-align: center;
+
+}
+
+#mytable th:nth-child(1) {
+    border-right: 1px solid rgba(4, 107, 73, 1);
+}
+
+th {
+    border: 2px solid rgba(127, 255, 212, 0.25);
+    font-weight: bold;
+    padding: 2em;
+    text-align: center;
+    color: rgb(123, 163, 150);
+    background: rgba(127, 255, 212, 0.25);
+}
+
+th a {
+    text-decoration: none;
+}
+
+th a:hover {
+    color: rgba(4, 107, 73, 1);
+    text-decoration: none;
+}
+
+th a:active {
+    color: rgb(127, 212, 184);
+    text-decoration: none;
+}
+
+td {
+    border: 1px solid rgb(127, 255, 212);
+    padding: 6px;
+}
+
+td.pad:not(:empty) {
+    border:none !important;
+}
+
+td:nth-child(even) {
+    background-color: rgba(204, 254, 237, 0.25);
+}
+
+.num_posts_col {text-align: center;}
+
+#nav {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+
+#nav-left {
+    margin-left: 2em;
+    margin-top: 3em;
+}
+
+#home, #goto, #add-event {
+    font-size: 1em;
+    border: 1px solid rgba(127, 255, 212, 0.25);
+    background: rgba(127, 255, 212, 0.25);
+    color:rgb(123, 163, 150);
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 .5em rgba(4, 107, 73, 1);
+}
+
+#goto {
+    padding: .5em;
+}
+
+#add-event, #home {
+    margin-bottom: 30px;
+}
+
+#home:hover, #goto:hover, #add-event:hover {
+    color: rgba(4, 107, 73, 1);
+    background: rgba(57, 206, 157, 0.543);
+    box-shadow: 0 .5em rgb(3, 77, 52);
+}
+
+#home:active, #goto:active, #add-event:active {
+    box-shadow: 0 .2em rgb(3, 56, 39);
+    transform: translateY(4px);
+}
+
+form, #event {
+    color: rgb(123, 163, 150);
+    margin-left: 2em;
+}
+
+form p {   
+    margin-top: 1.5em;
+}
+
+form textarea {
+    width: 70%;
+}
+
+form input {
+    width: 40%;
+    margin-bottom: 5px;
+}
+
+
+h2 strong, li strong, p strong {
+    color:rgb(3, 56, 39);
+    font-weight: bold;
+}
+
+h1 strong {
+    color:rgb(87, 170, 143);
+    font-weight: bold;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid rgb(87, 170, 143);
+}
+
+.center {
+   /* display: flex;
+   justify-content: center; */
+    text-align: center;
+}
+
+#month, #year, .event-time {
+    background: rgba(127, 255, 212, 0.25);
+    color: rgb(123, 163, 150);
+    border: 1px solid rgb(123, 163, 150);
+    border-radius: 2px;
+    padding: .5em;
+
+}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 760px) and (max-device-width: 1024px)  {
+
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+
+    #calendar {
+        width: 90%;
+    }
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid rgb(127, 255, 212); margin-bottom: 5px;}
+
+    /* Zebra striping */
+    tr:nth-child(odd) { 
+        background-color: rgba(204, 254, 237, 0.25);
+    } 
+
+    tr {
+        width: 100%;
+    }
+
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid rgba(4, 107, 73, 1); 
+		position: relative;
+		padding-left: 50%; 
+        margin: 10px 10px;
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 30%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	
+	/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "Sunday"; color: rgb(123, 163, 150); font-weight: bold; }
+	td:nth-of-type(2):before { content: "Monday"; color: rgb(123, 163, 150); font-weight: bold; }
+	td:nth-of-type(3):before { content: "Tuesday"; color: rgb(123, 163, 150); font-weight: bold; }
+	td:nth-of-type(4):before { content: "Wednesday"; color: rgb(123, 163, 150); font-weight: bold; }
+	td:nth-of-type(5):before { content: "Thursday"; color: rgb(123, 163, 150); font-weight: bold; }
+	td:nth-of-type(6):before { content: "Friday"; color: rgb(123, 163, 150); font-weight: bold; }
+	td:nth-of-type(7):before { content: "Saturday"; color: rgb(123, 163, 150); font-weight: bold; }
+
+}
